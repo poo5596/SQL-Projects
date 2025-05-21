@@ -1,0 +1,32 @@
+mysql> SELECT * FROM EMPLOYEE;
++-------+---------+---------+---------+
+| Empid | Empname | Address | Salary  |
++-------+---------+---------+---------+
+|   101 | Pooja   | Airoli  | 5000000 |
+|   102 | Ajay    | Airoli  | 5000000 |
+|   103 | NULL    | NULL    |    NULL |
+|   104 | UMA     | NULL    |    NULL |
+|   104 | JAGAN   | ODISHA  |    NULL |
++-------+---------+---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEES WHERE Address is NULL;
+ERROR 1146 (42S02): Table 'neha_singh.employees' doesn't exist
+mysql> SELECT * FROM EMPLOYEE WHERE Address is NULL;
++-------+---------+---------+--------+
+| Empid | Empname | Address | Salary |
++-------+---------+---------+--------+
+|   103 | NULL    | NULL    |   NULL |
+|   104 | UMA     | NULL    |   NULL |
++-------+---------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEE WHERE Address is NOT NULL;
++-------+---------+---------+---------+
+| Empid | Empname | Address | Salary  |
++-------+---------+---------+---------+
+|   101 | Pooja   | Airoli  | 5000000 |
+|   102 | Ajay    | Airoli  | 5000000 |
+|   104 | JAGAN   | ODISHA  |    NULL |
++-------+---------+---------+---------+
+3 rows in set (0.00 sec)

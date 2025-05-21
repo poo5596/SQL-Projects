@@ -1,0 +1,217 @@
+mysql> select * from student;
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     2 | Uma   |         500 | A     |         98 |
+|     3 | Sahil |         305 | C     |         90 |
+|     4 | Sonam |         700 | O     |         75 |
++-------+-------+-------------+-------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where Total_marks=405 and grade="A";
+Empty set (0.00 sec)
+
+mysql> select * from student where Total_marks=405 and grade="b";
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
++-------+-------+-------------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where Total_marks=405 or grade="a";
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     2 | Uma   |         500 | A     |         98 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name not="Queen";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '="Queen"' at line 1
+mysql> select * from student where not name="Queen";
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     2 | Uma   |         500 | A     |         98 |
+|     3 | Sahil |         305 | C     |         90 |
+|     4 | Sonam |         700 | O     |         75 |
++-------+-------+-------------+-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name in("Uma", "Sonam");
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     2 | Uma   |         500 | A     |         98 |
+|     4 | Sonam |         700 | O     |         75 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where salary between 500 and 700;;
+ERROR 1054 (42S22): Unknown column 'salary' in 'where clause'
+ERROR:
+No query specified
+
+mysql> select * from student where Total_marka between 500 and 700;;
+ERROR 1054 (42S22): Unknown column 'Total_marka' in 'where clause'
+ERROR:
+No query specified
+
+mysql> select * from student where Total_marks tween 500 and 700;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tween 500 and 700' at line 1
+ERROR:
+No query specified
+
+mysql> select * from student where Total_marks between 500 and 700;;
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     2 | Uma   |         500 | A     |         98 |
+|     4 | Sonam |         700 | O     |         75 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql> select * from student where Total_marks not between 500 and 700;;
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     3 | Sahil |         305 | C     |         90 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql> select * from student where Total_marks between 500 and 700 and name not in(uma);
+ERROR 1054 (42S22): Unknown column 'uma' in 'where clause'
+mysql> select * from student where Total_marks between 500 and 700 and Name Not In(Sonam);
+ERROR 1054 (42S22): Unknown column 'Sonam' in 'where clause'
+mysql> select * from student where Grade  between a and c;
+ERROR 1054 (42S22): Unknown column 'a' in 'where clause'
+mysql> select * from student where Total_marks between 500 and 700 and Name Not In("Sonam");
++-------+------+-------------+-------+------------+
+| Sr_No | Name | Total_marks | Grade | addendance |
++-------+------+-------------+-------+------------+
+|     2 | Uma  |         500 | A     |         98 |
++-------+------+-------------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where name between "Queen" and "Sahil";
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     3 | Sahil |         305 | C     |         90 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name not between "Queen" and "Sahil";
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     2 | Uma   |         500 | A     |         98 |
+|     4 | Sonam |         700 | O     |         75 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name in("Queen", "Uma") and Total_marks between 300 and 500;
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     2 | Uma   |         500 | A     |         98 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name in("Queen", "Uma") and Total_marks between 300 and 400;
+Empty set (0.00 sec)
+
+mysql> select * from student where name in("Queen", "Uma") and Total_marks between 300 and 700;
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     2 | Uma   |         500 | A     |         98 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name in("Queen", "Uma") and Total_marks between 100 and 500;
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     2 | Uma   |         500 | A     |         98 |
++-------+-------+-------------+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where addendance>All(select addendance from student wh
+ere name="Queen");
++-------+------+-------------+-------+------------+
+| Sr_No | Name | Total_marks | Grade | addendance |
++-------+------+-------------+-------+------------+
+|     2 | Uma  |         500 | A     |         98 |
++-------+------+-------------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where addendance>All(select addendance from student where name="sonam");
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     2 | Uma   |         500 | A     |         98 |
+|     3 | Sahil |         305 | C     |         90 |
++-------+-------+-------------+-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where addendance>Any(select addendance from student wh
+ere name="sonam");
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
+|     2 | Uma   |         500 | A     |         98 |
+|     3 | Sahil |         305 | C     |         90 |
++-------+-------+-------------+-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where addendance>Any(select addendance from student where name="uma");
+Empty set (0.00 sec)
+
+mysql> select * from student where addendance>Any(select addendance from student where name="queen");
++-------+------+-------------+-------+------------+
+| Sr_No | Name | Total_marks | Grade | addendance |
++-------+------+-------------+-------+------------+
+|     2 | Uma  |         500 | A     |         98 |
++-------+------+-------------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where name like "Qu%";
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     1 | Queen |         405 | B     |         95 |
++-------+-------+-------------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where name like "%ma";
++-------+------+-------------+-------+------------+
+| Sr_No | Name | Total_marks | Grade | addendance |
++-------+------+-------------+-------+------------+
+|     2 | Uma  |         500 | A     |         98 |
++-------+------+-------------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where name like "%h%";
++-------+-------+-------------+-------+------------+
+| Sr_No | Name  | Total_marks | Grade | addendance |
++-------+-------+-------------+-------+------------+
+|     3 | Sahil |         305 | C     |         90 |
++-------+-------+-------------+-------+------------+
+1 row in set (0.00 sec)

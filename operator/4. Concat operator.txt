@@ -1,0 +1,24 @@
+mysql> select * from staff;
++-------+-------+--------------------+--------+-------+------+--------+
+| Sr_No | Name  | Position           | Salary | Bonus | age  | Gender |
++-------+-------+--------------------+--------+-------+------+--------+
+|     1 | Sonam | Hr                 |  50500 |   400 |   25 | Female |
+|     2 | Johan | Mis Excutive       |  44600 |   560 |   35 | Female |
+|     3 | Rohan | Assientant Opertor |  80000 |   890 |   17 | Male   |
+|     4 | Sonam | Plumber            |  30000 |   500 |   16 | Male   |
+|     5 | Johan | Office_assitance   |  20000 |   890 |   30 | Male   |
+|     6 | Rohan | Python_dewloper    |  58000 |   900 |   40 | Male   |
++-------+-------+--------------------+--------+-------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select *,concat(name, " ", Gender) as Full_name from staff;
++-------+-------+--------------------+--------+-------+------+--------+--------------+
+| Sr_No | Name  | Position           | Salary | Bonus | age  | Gender | Full_name    |
++-------+-------+--------------------+--------+-------+------+--------+--------------+
+|     1 | Sonam | Hr                 |  50500 |   400 |   25 | Female | Sonam Female |
+|     2 | Johan | Mis Excutive       |  44600 |   560 |   35 | Female | Johan Female |
+|     3 | Rohan | Assientant Opertor |  80000 |   890 |   17 | Male   | Rohan Male   |
+|     4 | Sonam | Plumber            |  30000 |   500 |   16 | Male   | Sonam Male   |
+|     5 | Johan | Office_assitance   |  20000 |   890 |   30 | Male   | Johan Male   |
+|     6 | Rohan | Python_dewloper    |  58000 |   900 |   40 | Male   | Rohan Male   |
++-------+-------+--------------------+--------+-------+------+--------+----------

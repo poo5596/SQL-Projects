@@ -1,0 +1,139 @@
+mysql> USE EMPLOYEES;
+Database changed
+mysql> SELECT * FROM STAFF;
++-------+-------+--------------------+--------+-------+------+--------+
+| Sr_No | Name  | Position           | Salary | Bonus | age  | Gender |
++-------+-------+--------------------+--------+-------+------+--------+
+|     1 | Sonam | Hr                 |  50500 |   400 |   25 | Female |
+|     2 | Johan | Mis Excutive       |  44600 |   560 |   35 | Female |
+|     3 | Rohan | Assientant Opertor |  80000 |   890 |   17 | Male   |
+|     4 | Sonam | Plumber            |  30000 |   500 |   16 | Male   |
+|     5 | Johan | Office_assitance   |  20000 |   890 |   30 | Male   |
+|     6 | Rohan | Python_dewloper    |  58000 |   900 |   40 | Male   |
++-------+-------+--------------------+--------+-------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE STAFF SET SALARY=SALARY+BONUS;
+Query OK, 6 rows affected (0.01 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> SELECT * FROM STAFF;
++-------+-------+--------------------+--------+-------+------+--------+
+| Sr_No | Name  | Position           | Salary | Bonus | age  | Gender |
++-------+-------+--------------------+--------+-------+------+--------+
+|     1 | Sonam | Hr                 |  50900 |   400 |   25 | Female |
+|     2 | Johan | Mis Excutive       |  45160 |   560 |   35 | Female |
+|     3 | Rohan | Assientant Opertor |  80890 |   890 |   17 | Male   |
+|     4 | Sonam | Plumber            |  30500 |   500 |   16 | Male   |
+|     5 | Johan | Office_assitance   |  20890 |   890 |   30 | Male   |
+|     6 | Rohan | Python_dewloper    |  58900 |   900 |   40 | Male   |
++-------+-------+--------------------+--------+-------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE STAFF SET SALARY=SALARY+BONUS AS fULL_SALARY;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS fULL_SALARY' at line 1
+mysql> UPDATE STAFF SET SALARY=SALARY+BONUS;
+Query OK, 6 rows affected (0.01 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> SELECT * FROM STAFF;
++-------+-------+--------------------+--------+-------+------+--------+
+| Sr_No | Name  | Position           | Salary | Bonus | age  | Gender |
++-------+-------+--------------------+--------+-------+------+--------+
+|     1 | Sonam | Hr                 |  51300 |   400 |   25 | Female |
+|     2 | Johan | Mis Excutive       |  45720 |   560 |   35 | Female |
+|     3 | Rohan | Assientant Opertor |  81780 |   890 |   17 | Male   |
+|     4 | Sonam | Plumber            |  31000 |   500 |   16 | Male   |
+|     5 | Johan | Office_assitance   |  21780 |   890 |   30 | Male   |
+|     6 | Rohan | Python_dewloper    |  59800 |   900 |   40 | Male   |
++-------+-------+--------------------+--------+-------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE STAFF SET BONUS=BONUS+100 WHERE NAME="jOHAN";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM STAFF;
++-------+-------+--------------------+--------+-------+------+--------+
+| Sr_No | Name  | Position           | Salary | Bonus | age  | Gender |
++-------+-------+--------------------+--------+-------+------+--------+
+|     1 | Sonam | Hr                 |  51300 |   400 |   25 | Female |
+|     2 | Johan | Mis Excutive       |  45720 |   660 |   35 | Female |
+|     3 | Rohan | Assientant Opertor |  81780 |   890 |   17 | Male   |
+|     4 | Sonam | Plumber            |  31000 |   500 |   16 | Male   |
+|     5 | Johan | Office_assitance   |  21780 |   990 |   30 | Male   |
+|     6 | Rohan | Python_dewloper    |  59800 |   900 |   40 | Male   |
++-------+-------+--------------------+--------+-------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE STAFF SET BONUS=BONUS-100 WHERE NAME="jOHAN";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> UPDATE STAFF SET BONUS=BONUS*20 WHERE NAME="jOHAN";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> UPDATE STAFF SET BONUS=BONUS/2 WHERE NAME="jOHAN";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM STAFF WHERE(NAME="sONAM", "jOHAN" AND SALARY>45000) OR (NAME
+="rOHAN" and salary<2200);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> SELECT * FROM STAFF WHERE(NAME="sONAM" AND SALARY>45000) OR (NAME="rOHAN"
+and salary<2200);
++-------+-------+----------+--------+-------+------+--------+
+| Sr_No | Name  | Position | Salary | Bonus | age  | Gender |
++-------+-------+----------+--------+-------+------+--------+
+|     1 | Sonam | Hr       |  51300 |   400 |   25 | Female |
++-------+-------+----------+--------+-------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM STAFF WHERE(NAME="sONAM" AND SALARY>45000) OR (NAME="jOHAN"
+and salary<2200);
++-------+-------+----------+--------+-------+------+--------+
+| Sr_No | Name  | Position | Salary | Bonus | age  | Gender |
++-------+-------+----------+--------+-------+------+--------+
+|     1 | Sonam | Hr       |  51300 |   400 |   25 | Female |
++-------+-------+----------+--------+-------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM STAFF WHERE(NAME="sONAM" AND SALARY>45000) OR (NAME="jOHAN" and salary=<22000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=<22000)' at line 1
+mysql> SELECT * FROM STAFF WHERE(NAME="sONAM" AND SALARY>45000) OR (NAME="jOHAN" and salary<22000);
++-------+-------+------------------+--------+-------+------+--------+
+| Sr_No | Name  | Position         | Salary | Bonus | age  | Gender |
++-------+-------+------------------+--------+-------+------+--------+
+|     1 | Sonam | Hr               |  51300 |   400 |   25 | Female |
+|     5 | Johan | Office_assitance |  21780 |  8900 |   30 | Male   |
++-------+-------+------------------+--------+-------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from staff where salary between 22000 and 55000;
++-------+-------+--------------+--------+-------+------+--------+
+| Sr_No | Name  | Position     | Salary | Bonus | age  | Gender |
++-------+-------+--------------+--------+-------+------+--------+
+|     1 | Sonam | Hr           |  51300 |   400 |   25 | Female |
+|     2 | Johan | Mis Excutive |  45720 |  5600 |   35 | Female |
+|     4 | Sonam | Plumber      |  31000 |   500 |   16 | Male   |
++-------+-------+--------------+--------+-------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from staff where name in("Sonam");
++-------+-------+----------+--------+-------+------+--------+
+| Sr_No | Name  | Position | Salary | Bonus | age  | Gender |
++-------+-------+----------+--------+-------+------+--------+
+|     1 | Sonam | Hr       |  51300 |   400 |   25 | Female |
+|     4 | Sonam | Plumber  |  31000 |   500 |   16 | Male   |
++-------+-------+----------+--------+-------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from staff where name like "S%";
++-------+-------+----------+--------+-------+------+--------+
+| Sr_No | Name  | Position | Salary | Bonus | age  | Gender |
++-------+-------+----------+--------+-------+------+--------+
+|     1 | Sonam | Hr       |  51300 |   400 |   25 | Female |
+|     4 | Sonam | Plumber  |  31000 |   500 |   16 | Male   |
++-------+-------+----------+--------+-------+------+--------+
+2 rows in set (0.00 sec)
